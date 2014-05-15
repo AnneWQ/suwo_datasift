@@ -1,0 +1,26 @@
+{
+    "name": "SUWO_Datasift_Quota",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "dependencies": {
+        "async": "*",
+        "connect-flash": "*",
+        "connect-ensure-login": "*",
+        "datasift-node": "*",
+        "express": "3.5.0",
+        "jade": "*",
+        "mongodb": "*",
+        "moment": "*",
+        "mongoose": "*",
+        "nodemon": "*",
+        "recaptcha": "*",
+        "passport-remember-me": "*",
+        "passport": "*",
+        "passport-local": "*",
+        "passport-ldapauth": "*",
+        "winston": "*"
+    }
+}

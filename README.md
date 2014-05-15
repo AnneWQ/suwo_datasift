@@ -1,2 +1,2 @@
-suwo_datasift
+Datasift Quota
 =============
