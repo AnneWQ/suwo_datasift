@@ -1,0 +1,80 @@
+extends main_layout
+
+block nav
+  include includes/nav
+block content
+  .row
+    #jcsdl
+  .row.col-sm-6
+    form#csdl-form(action='/datasift/stream' method='post')
+      .form-group
+        textarea.form-control#jcsdl-code(rows=12)
+          | // JCSDL_MASTER 4372d4fa50fcab48e98a2b72efcc9309 AND
+          | // JCSDL_VERSION 2.1
+          | // JCSDL_START ab88b65ab9bbd5d9edec247121dd0f6c youtube.duration,greaterThan,20-4 1
+          | youtube.duration >= 3600
+          | // JCSDL_END
+          | // JCSDL_MASTER_END
+      .form-group
+        table.table
+          tbody
+            tr
+              td CSDL hash: 
+              td#csdl-hash NA
+            tr
+              td Cost: 
+              td#dpu NA
+              td DPU
+            tr
+              td Credit after execution: 
+              td#dpu-remain NA
+              td DPU
+      .form-group
+        button.disabled.btn.btn-success(type='submit') Execute
+
+block append footer
+  link(href='/css/jcsdl.min.css', rel='stylesheet')
+  script(src='/js/jcsdl.definition.js')
+  script(src='/js/jcsdl.min.js')
+  script.
+
+    $('#csdl-form').hide();
+
+    //load query builder
+    function getCost(code) {
+      var lines = code.replace(/\r\n/g, '\n').split('\n');
+      lines = lines.map(function(line) {
+          if(0 === line.indexOf('//')) return '';
+
+          return line;
+        });
+
+      var _code = lines.join(' ');
+
+      $.get('/datasift/dpu', {csdl: _code}, function(data, textStatus){
+          if('success' === textStatus) {
+              $('#csdl-hash').text(data.hash);
+              $('#dpu').text(data.dpu);
+              if(data.remain)
+                  $('#dpu-remain').text(data.remain);
+            }
+        }); 
+    };
+
+    var options = {
+        save: function(code) {
+            $('#jcsdl-code').val(code);
+            $('#csdl-form').fadeIn();
+            getCost(code);
+        },
+
+        cancel : function() {
+            //reset to default
+            $('#csdl-form').trigger('reset');//.fadeOut();
+        }
+    };
+    var editor = new JCSDLGui('#jcsdl', options);
+    var code = '';
+    code = $('#jcsdl-code').val();
+    if(code)
+      editor.loadJCSDL(code);

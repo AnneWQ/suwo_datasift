@@ -7,6 +7,7 @@
     },
     "dependencies": {
         "async": "*",
+        "bcrypt-nodejs": "*",
         "connect-flash": "*",
         "connect-ensure-login": "*",
         "datasift-node": "*",
@@ -15,6 +16,7 @@
         "mongodb": "*",
         "moment": "*",
         "mongoose": "*",
+        "nodemailer": "*",
         "nodemon": "*",
         "recaptcha": "*",
         "passport-remember-me": "*",

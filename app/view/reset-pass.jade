@@ -1,0 +1,15 @@
+extends main_layout
+
+block head
+  link(href='/css/signin.css', rel='stylesheet')
+
+block content
+  .hide.alert.alert-warning Password not match
+  form.form-signin(action='/profile/reset-pass', method='post')
+    label.form-signin-heading Input a new password
+    input.form-control.hide(name='tk' value=(tk?tk:undefined))
+    input.form-control.input-large(placeholder='New password' type='password', name='password' required='')
+    input.form-control.input-large(placeholder='Confirm passowrd' type='password' data-validation-matches-match="password" , name='confirm' required='')
+    button.btn.btn-primary.btn-block(type='submit') Continue
+      #push
+  script(src='/js/reset-pass.jade.js')

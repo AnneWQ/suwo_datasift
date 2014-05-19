@@ -1,0 +1,10 @@
+extends main_layout
+
+block head
+  link(href='/css/signin.css', rel='stylesheet')
+
+block content
+  form.form-signin(action='/profile/forgot-pass', method='POST')
+    label.form-signin-heading Reset your password
+    input.form-control.input-large.reset(placeholder='Email' type='email' name='email' required='')
+    button.btn.btn-primary.btn-lg.btn-block(type='submit') Continue
