@@ -11,7 +11,16 @@
         "connect-flash": "*",
         "connect-ensure-login": "*",
         "datasift-node": "*",
-        "express": "3.5.0",
+        "express": "*",
+
+        "body-parser": "*",
+        "morgan": "*",
+        "cookie-parser": "*",
+        "express-session": "*",
+        "static-favicon": "*",
+        "errorhandler": "*",
+        "method-override": "*",
+        
         "jade": "*",
         "mongodb": "*",
         "moment": "*",
